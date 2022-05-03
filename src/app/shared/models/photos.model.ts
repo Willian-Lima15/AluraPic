@@ -1,5 +1,10 @@
-export class PhotosModel {
-  public id: number;
-  public url: string;
-  public description: string;
+export interface PhotosModel {
+  id: number;
+  postDate: Date;
+  url: string;
+  description: string;
+  allowComments: boolean;
+  likes: number;
+  comments: number;
+  userId: number;
 }

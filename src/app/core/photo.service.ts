@@ -1,15 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { PhotosModel } from '../shared/models/photos.model';
-import { CrudService } from './crudOperations.service';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
+import { PhotosModel } from "../shared/models/photos.model";
+
+const API = "http://localhost:3000";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-export class PhotoService extends CrudService<PhotosModel, number>{
+export class PhotoService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(protected _http: HttpClient) {
-    super(_http, `${environment.api.baseUrl}/photos`);
-   }
+  listFromUser(userName: string) {
+    return this.httpClient.get<PhotosModel[]>(API + "/flavio/photos");
+  }
 }
