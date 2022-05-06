@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PhotoService } from 'src/app/core/photo.service';
+import { PhotosModel } from 'src/app/shared/models/photos.model';
 
 @Component({
   selector: 'app-photo-list',
@@ -9,7 +10,7 @@ import { PhotoService } from 'src/app/core/photo.service';
 })
 export class PhotoListComponent implements OnInit {
 
-  photos: any[] = [];
+  photos: PhotosModel[] = [];
 
   constructor(
     private photoService: PhotoService,
