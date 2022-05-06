@@ -7,5 +7,5 @@ import { PhotoService } from "src/app/core/photo.service";
 })
 export class PhotoComponent {
   @Input() url = "";
-  @Input() alt = "";
+  @Input() description = "";
 }
