@@ -9,6 +9,7 @@ import { PhotosModel } from 'src/app/shared/models/photos.model';
 export class PhotosComponent implements OnInit {
 
 @Input() photos: PhotosModel[] = [];
+rows = [];
 
   constructor() { }
 
