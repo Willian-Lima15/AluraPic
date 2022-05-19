@@ -11,6 +11,7 @@ import { PhotosModel } from 'src/app/shared/models/photos.model';
 export class PhotoListComponent implements OnInit {
 
   photos: PhotosModel[] = [];
+  filter: string = '';
 
   constructor(
     private photoService: PhotoService,
