@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { PhotosModel } from "../shared/models/photos.model";
@@ -13,5 +13,13 @@ export class PhotoService {
 
   listFromUser(userName: string) {
     return this.httpClient.get<PhotosModel[]>(API + "/" + userName + "/photos");
+  }
+
+  listFromUserPaginated(userName: string, page: number) {
+    const params = new HttpParams().append("page", page.toString());
+    return this.httpClient.get<PhotosModel[]>(
+      API + "/" + userName + "/photos",
+      { params }
+    );
   }
 }
