@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PhotosModel } from 'src/app/shared/models/photos.model';
+import { PhotoModel } from 'src/app/shared/models/photo.model';
 
 @Component({
   selector: 'app-photos',
@@ -8,7 +8,7 @@ import { PhotosModel } from 'src/app/shared/models/photos.model';
 })
 export class PhotosComponent implements OnChanges {
 
-@Input() photos: PhotosModel[] = [];
+@Input() photos: PhotoModel[] = [];
 rows: any[] = [];
 
   constructor() { }
@@ -19,7 +19,7 @@ rows: any[] = [];
     this.rows = this.groupColumns(this.photos);
   }
 
-  groupColumns(photos: PhotosModel[]) {
+  groupColumns(photos: PhotoModel[]) {
     const newRows = [];
 
     for(let index = 0; index < photos.length; index+=3) {

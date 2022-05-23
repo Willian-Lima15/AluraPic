@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators'
 import { PhotoService } from 'src/app/core/photo.service';
 
-import { PhotosModel } from 'src/app/shared/models/photos.model';
+import { PhotoModel } from 'src/app/shared/models/photo.model';
 
 @Component({
   selector: 'app-photo-list',
@@ -13,7 +13,7 @@ import { PhotosModel } from 'src/app/shared/models/photos.model';
 })
 export class PhotoListComponent implements OnInit, OnDestroy {
 
-  photos: PhotosModel[] = [];
+  photos: PhotoModel[] = [];
   filter: string = '';
   debounce: Subject<string> = new Subject<string>();
   hasMore: boolean = true;

@@ -1,4 +1,4 @@
-export interface PhotosModel {
+export interface PhotoModel {
   id: number;
   postDate: Date;
   url: string;
