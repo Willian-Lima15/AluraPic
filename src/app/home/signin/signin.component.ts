@@ -6,15 +6,16 @@ import { AuthService } from "src/app/core/auth.service";
 @Component({
   templateUrl: "./signin.component.html"
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit {
 
+  /*@ViewChild('userNameInput')*/userNameInput: ElementRef<HTMLInputElement>;
   loginForm: FormGroup;
-  @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private autheService: AuthService,
-    private router: Router
+    private router: Router,
     ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class SignInComponent implements OnInit{
     err => {
       console.log(err);
       this.loginForm.reset();
-      this.userNameInput.nativeElement.focus()
+      this.userNameInput.nativeElement.focus();
       alert('Invalid user name is password')
     })
   }
