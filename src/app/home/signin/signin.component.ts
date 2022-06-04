@@ -8,7 +8,7 @@ import { AuthService } from "src/app/core/auth.service";
 })
 export class SignInComponent implements OnInit {
 
-  /*@ViewChild('userNameInput')*/userNameInput: ElementRef<HTMLInputElement>;
+  @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
   loginForm: FormGroup;
 
 
@@ -29,8 +29,8 @@ export class SignInComponent implements OnInit {
 
   login() {
 
-    const userName = this.loginForm.get('userName').value
-    const password = this.loginForm.get('password').value
+    const userName = this.loginForm.get('userName').value;
+    const password = this.loginForm.get('password').value;
 
     this.autheService.authenticate(userName, password)
     .subscribe(() => this.router.navigate(['user', userName]),
@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
       console.log(err);
       this.loginForm.reset();
       this.userNameInput.nativeElement.focus();
-      alert('Invalid user name is password')
-    })
+      alert('Invalid user name is password');
+    });
   }
 }
