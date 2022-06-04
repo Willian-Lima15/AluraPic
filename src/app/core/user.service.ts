@@ -30,4 +30,9 @@ export class UserService {
     const userModel = jtw_decode(token) as UserModel;
     this.userSubject.next(userModel);
   }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.userSubject.next(null);
+  }
 }
