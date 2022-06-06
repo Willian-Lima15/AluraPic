@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
 
   private userSubject = new BehaviorSubject<UserModel>(null);
+  private userName: string;
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() &&
@@ -25,14 +26,23 @@ export class UserService {
     return this.userSubject.asObservable();
   }
 
-  decodeAndNotify() {
+  getUserName() {
+    return this.userName;
+  }
+
+  private decodeAndNotify() {
     const token = this.tokenService.getToken();
-    const userModel = jtw_decode(token) as UserModel;
-    this.userSubject.next(userModel);
+    const user = jtw_decode(token) as UserModel;
+    this.userName = user.name;
+    this.userSubject.next(user);
   }
 
   logout() {
     this.tokenService.removeToken();
     this.userSubject.next(null);
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
   }
 }
