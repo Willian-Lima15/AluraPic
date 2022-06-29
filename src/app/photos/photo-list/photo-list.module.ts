@@ -8,6 +8,8 @@ import { PhotosComponent } from './photos/photos.component';
 import { PhotoModule } from '../photo/photo/photo.module';
 import { CardModule } from 'src/app/shared/components/card/card-module/card.module';
 import { SearchComponent } from './photos/search/search/search.component';
+import { DarkOnHoverModule } from 'src/app/shared/directive/dark-on-hove/dark-on-hover.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -22,7 +24,9 @@ import { SearchComponent } from './photos/search/search/search.component';
   imports: [
     CommonModule,
     PhotoModule,
-    CardModule
+    CardModule,
+    DarkOnHoverModule,
+    RouterModule
   ]
 })
 export class PhotoListModule { }
