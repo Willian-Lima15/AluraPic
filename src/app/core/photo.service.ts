@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
+import { PhotoComponent } from "../photos/photo/photo.component";
+import { PhotoComment } from "../shared/interfaces/photo-comment";
 import { PhotoModel } from "../shared/models/photo.model";
 
 const API = "http://localhost:3000";
@@ -33,8 +35,14 @@ export class PhotoService {
     return this.httpClient.post(API + '/photos/upload', formData)
   }
 
-  findById(id: string) {
+  findById(photoId: number) {
 
-    return this.httpClient.get<PhotoModel>(API + '/photos/' + id);
+    return this.httpClient.get<PhotoModel>(API + '/photos/' + photoId);
+  }
+
+  getComment(photoId: number) {
+    return this.httpClient.get<PhotoComment[]>(
+      API + '/photos/' + photoId + '/comments'
+    );
   }
 }
