@@ -1,0 +1,20 @@
+<div class="col-lg-4 p-4">
+  <small>
+      <p class="text-left break-word">{{ photo.description }}</p>
+      <hr>
+  </small>
+
+  <app-photo-comments [photoId]="photoId"></app-photo-comments>]>
+  <div class="mt-4">
+      <form>
+          <div class="input-group">
+              <textarea class="form-control"></textarea>
+              <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary pull-left">
+                      Publish
+                  </button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div><!-- col-md-4 -->
