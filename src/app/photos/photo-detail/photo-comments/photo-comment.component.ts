@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable} from "rxjs";
 import { Input } from "@angular/core";
 import { PhotoService } from "src/app/core/photo.service";
 import { PhotoComment } from "src/app/shared/interfaces/photo-comment";
@@ -26,5 +26,15 @@ export class PhotoCommentComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       comment: ['', Validators.maxLength(300)]
     })
+  }
+
+  save() {
+    const comment = this.commentForm.get('comment').value as string;
+      this.photoService
+      .addComment(this.photoId, comment)
+      .subscribe(()=> {
+        this.commentForm.reset();
+        alert('Comentário adicionado com sucesso!')
+      })
   }
 }
