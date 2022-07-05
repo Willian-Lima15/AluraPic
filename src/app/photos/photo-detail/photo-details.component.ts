@@ -20,7 +20,7 @@ export class PhotoDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.photoId = this.router.snapshot.params.photoId;
-    this.photo$ = this.photoService.findById(photoId)
+    this.photo$ = this.photoService.findById(this.photoId)
 
   }
 }

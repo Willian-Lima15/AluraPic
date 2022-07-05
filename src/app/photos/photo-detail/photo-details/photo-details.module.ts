@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PhotoDetailsComponent } from '../photo-details.component';
 import { PhotoModule } from '../../photo/photo/photo.module';
 import { PhotoCommentComponent } from '../photo-comments/photo-comment.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +12,8 @@ import { PhotoCommentComponent } from '../photo-comments/photo-comment.component
   exports: [PhotoDetailsComponent,PhotoCommentComponent],
   imports: [
     CommonModule,
-    PhotoModule
+    PhotoModule,
+    RouterModule
   ]
 })
 export class PhotoDetailsModule { }
