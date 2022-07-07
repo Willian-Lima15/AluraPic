@@ -1,26 +1,28 @@
-<div class="bg-white border" *ngIf="(photo$ | async) as photo">
+<div class="bg-white border" *ngIf="photo$ | async as photo">
   <div class="row">
-      <div class="col-lg-8">
-          <app-photo [url]="photo.url" [description]="photo.description"></app-photo>
-      </div>
+    <div class="col-lg-8">
+      <app-photo
+        [url]="photo.url"
+        [description]="photo.description"
+      ></app-photo>
+    </div>
 
-      <div class="col-lg-4 p-4">
-          <small>
-              <p class="text-left break-word">{{ photo.description }}</p>
-              <hr>
-          </small>
-          <div class="mt-4">
-              <form [formGroup]>
-                  <div class="input-group">
-                      <textarea class="form-control"></textarea>
-                      <div class="input-group-append">
-                          <button type="submit" class="btn btn-primary pull-left">
-                              Publish
-                          </button>
-                      </div>
-                  </div>
-              </form>
-          </div>
-      </div><!-- col-md-4 -->
-  </div><!-- row end -->
+    <div class="col-lg-4 p-4">
+      <small>
+        <p class="text-left break-word">{{ photo.description }}</p>
+        <hr />
+      </small>
+
+      <app-photo-comments
+        *ngIf="photo.allowComments; else warning"
+        [photoId]="photoId"
+      >
+      </app-photo-comments>
+      <ng-template #warning>
+        <p>User has disabled comments for this photo</p>
+      </ng-template>
+    </div>
+    <!-- col-md-4 -->
+  </div>
+  <!-- row end -->
 </div>
