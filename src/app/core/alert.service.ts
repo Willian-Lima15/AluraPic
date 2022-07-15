@@ -7,7 +7,7 @@ import { AlertModel, AlertType } from "../shared/interfaces/alertModel";
 })
 export class AlertService {
 
-  alertSubject: Subject<AlertModel>;
+  alertSubject: Subject<AlertModel> = new Subject<AlertModel>();
 
   sucess(message: string) {
     this.alert(AlertType.SUCCESS, message);
