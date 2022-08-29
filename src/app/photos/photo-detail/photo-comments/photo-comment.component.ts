@@ -4,7 +4,7 @@ import { Input } from "@angular/core";
 import { PhotoService } from "src/app/core/photo.service";
 import { PhotoComment } from "src/app/shared/interfaces/photo-comment";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { switchMap, tap } from "rxjs/Operator";
+import { switchMap,tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-photo-comments',
