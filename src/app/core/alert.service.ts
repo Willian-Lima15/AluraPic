@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { NavigationStart, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { AlertModel, AlertType } from "../shared/interfaces/alertModel";
 
@@ -9,6 +10,20 @@ export class AlertService {
 
   alertSubject: Subject<AlertModel> = new Subject<AlertModel>();
   keepAfterRouteChange = false;
+
+  constructor(
+    private router: Router
+  ) {
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationStart) {
+        if(this.keepAfterRouteChange){
+          this.keepAfterRouteChange = false;
+        }else {
+          this.clear();
+        }
+      }
+    })
+  }
 
   sucess(message: string, keepAfterRouteChange: boolean = false) {
     this.alert(AlertType.SUCCESS, message, keepAfterRouteChange);
@@ -33,5 +48,9 @@ export class AlertService {
 
   getAlert() {
     return this.alertSubject.asObservable();
+  }
+
+  clear(){
+    this.alertSubject.next(null);
   }
 }
