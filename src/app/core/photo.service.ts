@@ -58,7 +58,6 @@ export class PhotoService {
   }
 
   like(photoId: number) {
-
     this.httpClient.post(API + '/photo/' + photoId + '/like', {}, {observe: 'response'}
     ).pipe(map(res => true))
     .pipe(catchError(err => {
