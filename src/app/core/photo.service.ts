@@ -4,8 +4,9 @@ import { of, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { PhotoComment } from "../shared/interfaces/photo-comment";
 import { PhotoModel } from "../shared/models/photo.model";
+import {environment} from "../../environments/environment"
 
-const API = "http://localhost:3000";
+const API = environment.ApiUrl;
 
 @Injectable({
   providedIn: "root",
@@ -58,10 +59,12 @@ export class PhotoService {
   }
 
   like(photoId: number) {
-    this.httpClient.post(API + '/photo/' + photoId + '/like', {}, {observe: 'response'}
-    ).pipe(map(res => true))
+
+   return this.httpClient.post(API + '/photo/' + photoId + '/like', {}, {observe: 'response'}
+    )
+    .pipe(map(res => true))
     .pipe(catchError(err => {
       return err.status == '304' ? of(false) : throwError(err);
-    }))
+    }));
   }
 }

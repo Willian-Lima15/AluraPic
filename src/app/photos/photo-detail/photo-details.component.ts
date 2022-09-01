@@ -49,7 +49,7 @@ export class PhotoDetailsComponent implements OnInit {
   like (photo: PhotoModel) {
     this.photoService.like(photo.id).subscribe(liked => {
       if(liked) {
-        this.photo$ = this.photoService.findById(photo.id);
+       return this.photo$ = this.photoService.findById(photo.id);
     }
     });
   }
