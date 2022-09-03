@@ -17,13 +17,16 @@ const routes: Routes = [
     path: "user/:userName",
     component: PhotoListComponent,
     resolve: { photos: PhotoListResolver },
+    data: {}
   },
   {
-    path: "p/add", component: PhotoFormComponent, canActivate: [AuthGuard]
+    path: "p/add", component: PhotoFormComponent, canActivate: [AuthGuard],
+    data:{}
   },
 
   {
-    path: "p/:photoId", component: PhotoDetailsComponent
+    path: "p/:photoId", component: PhotoDetailsComponent,
+    data:{}
   },
 
   {
