@@ -9,28 +9,42 @@ import { AuthGuard } from "./core/guards/auth.guard";
 import { PhotoDetailsComponent } from "./photos/photo-detail/photo-details.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "home" },
   {
-    path: "home", loadChildren: './home/home.module#HomeModule'
+    path: "",
+    pathMatch: "full",
+    redirectTo: "home"
+  },
+  {
+    path: "home",
+    loadChildren: './home/home.module#HomeModule'
   },
   {
     path: "user/:userName",
     component: PhotoListComponent,
     resolve: { photos: PhotoListResolver },
-    data: {}
+    data: {
+      title:'TimeLine'
+    }
   },
   {
     path: "p/add", component: PhotoFormComponent, canActivate: [AuthGuard],
-    data:{}
+    data:{
+      title:'Photo upload'
+    }
   },
 
   {
     path: "p/:photoId", component: PhotoDetailsComponent,
-    data:{}
+    data:{
+      title:'Photo detail'
+    }
   },
 
   {
-    path: "not-found", component: NotFoundComponent
+    path: "not-found", component: NotFoundComponent,
+    data:{
+      title:'Not Found'
+    }
   },
   {
     path: "**", redirectTo:'not-found'
