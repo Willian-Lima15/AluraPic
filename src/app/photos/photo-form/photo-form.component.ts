@@ -1,4 +1,4 @@
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,  } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -46,9 +46,8 @@ export class PhotoFormComponent implements OnInit {
       .subscribe((event: HttpEvent<any>) => {
         if(event.type == HttpEventType.UploadProgress){
           this.percentDone = Math.round(100 * event.loaded / event.total);
-        }else if(event.type == HttpEventType.Response){
+        }else if(event instanceof HttpResponse){
           this.alertService.sucess('Upload complete', true);
-          this.router.navigate(['/user', this.userService.getUserName()]);
         }
       },
       err => {
