@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AlertModule } from "src/app/shared/components/alert/alert.module";
+import { LoadingModule } from "src/app/shared/components/loading/loading.module";
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { RequestInterceptor } from "../request.interceptor";
@@ -19,7 +20,8 @@ import { RequestInterceptor } from "../request.interceptor";
   imports: [
     CommonModule,
      RouterModule,
-     AlertModule
+     AlertModule,
+     LoadingModule
   ],
   providers: [
     {
