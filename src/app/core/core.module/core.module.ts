@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AlertModule } from "src/app/shared/components/alert/alert.module";
 import { LoadingModule } from "src/app/shared/components/loading/loading.module";
+import { MenuModule } from "src/app/shared/components/menu/menu.module";
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { RequestInterceptor } from "../request.interceptor";
@@ -21,7 +22,8 @@ import { RequestInterceptor } from "../request.interceptor";
     CommonModule,
      RouterModule,
      AlertModule,
-     LoadingModule
+     LoadingModule,
+     MenuModule
   ],
   providers: [
     {

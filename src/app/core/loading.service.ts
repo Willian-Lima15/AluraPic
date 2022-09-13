@@ -8,22 +8,19 @@ import { LoadingType } from '../shared/components/loading/loading-type.enum';
 })
 export class LoadingService {
 
-  loadingSubject = new Subject<LoadingType>
+  loadingSubject = new Subject<LoadingType>()
 
   getLoading() {
     return this.loadingSubject.asObservable()
       .pipe(startWith(LoadingType.STOPPED))
-  }
+  };
 
   start() {
     this.loadingSubject.next(LoadingType.LOADING);
-  }
+  };
 
   stop() {
     this.loadingSubject.next(LoadingType.STOPPED)
-  }
+  };
 
-
-
-  constructor() { }
 }
