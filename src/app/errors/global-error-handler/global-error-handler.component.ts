@@ -1,0 +1,43 @@
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Component, ErrorHandler, Injectable, Injector } from '@angular/core';
+import { UserService } from 'src/app/core/user.service';
+import * as StackTrace from "stacktrace-js";
+
+@Component({
+  selector: 'app-global-error-handler',
+  templateUrl: './global-error-handler.component.html',
+  styleUrls: ['./global-error-handler.component.css']
+})
+@Injectable()
+export class GlobalErrorHandler implements ErrorHandler {
+
+  constructor(
+    private injector: Injector,
+    private userService: UserService
+  ) { }
+
+  handleError(error: any): void {
+    console.log('passei pelo handler');
+
+    const location = this.injector.get(LocationStrategy);
+
+    const url = location instanceof PathLocationStrategy
+        ? location.path() : '';
+
+    const message = error.message
+      ? error.message : error.toString();
+
+    StackTrace
+        .fromError(error)
+        .then(stackFrames => {
+            const stackAsString = stackFrames
+                .map(sf => sf.toString())
+                .join('\n')
+
+                console.log(message);
+                console.log(stackAsString);
+                console.log('o que será enviado para o servidor');
+                console.log({ message, url, userName: this.userService.getUserName(), stack: stackAsString});
+        });
+}
+}
