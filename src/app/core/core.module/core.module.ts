@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AlertModule } from "src/app/shared/components/alert/alert.module";
 import { LoadingModule } from "src/app/shared/components/loading/loading.module";
 import { MenuModule } from "src/app/shared/components/menu/menu.module";
+import { showIfLoggedModule } from "src/app/shared/directive/show-if-logged/show-if-logged.module";
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { RequestInterceptor } from "../request.interceptor";
@@ -23,7 +24,8 @@ import { RequestInterceptor } from "../request.interceptor";
      RouterModule,
      AlertModule,
      LoadingModule,
-     MenuModule
+     MenuModule,
+     showIfLoggedModule
   ],
   providers: [
     {
