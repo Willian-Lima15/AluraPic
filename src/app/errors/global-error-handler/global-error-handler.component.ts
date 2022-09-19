@@ -1,5 +1,6 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Component, ErrorHandler, Injectable, Injector } from '@angular/core';
+import { ServerLogService } from 'src/app/core/server-log-.service';
 import { UserService } from 'src/app/core/user.service';
 import * as StackTrace from "stacktrace-js";
 
@@ -20,6 +21,8 @@ export class GlobalErrorHandler implements ErrorHandler {
     console.log('passei pelo handler');
 
     const location = this.injector.get(LocationStrategy);
+    const userService = this.injector.get(UserService);
+    const serverLogService = this.injector.get(ServerLogService)
 
     const url = location instanceof PathLocationStrategy
         ? location.path() : '';
@@ -37,7 +40,12 @@ export class GlobalErrorHandler implements ErrorHandler {
                 console.log(message);
                 console.log(stackAsString);
                 console.log('o que será enviado para o servidor');
-                console.log({ message, url, userName: this.userService.getUserName(), stack: stackAsString});
+                serverLogService.log({ message, url, userName: userService.getUserName(), stack: stackAsString})
+                  .subscribe(() => console.log('Error logged on server'),
+                  err => {
+                      console.log(err);
+                      console.log('Fail to send error log to server');
+                  });
         });
 }
 }
